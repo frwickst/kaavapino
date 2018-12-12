@@ -99,6 +99,13 @@ class Project(models.Model):
         null=True,
         encoder=DjangoJSONEncoder,
     )
+    deadlines = JSONField(
+        verbose_name=_("deadlines"),
+        default=dict,
+        blank=True,
+        null=True,
+        encoder=DjangoJSONEncoder,
+    )
     phase = models.ForeignKey(
         "ProjectPhase",
         verbose_name=_("phase"),
@@ -284,6 +291,14 @@ class ProjectPhase(models.Model):
         max_length=10, verbose_name=_("color code"), blank=True
     )
     index = models.PositiveIntegerField(verbose_name=_("index"))
+
+    metadata = JSONField(
+        verbose_name=_("metadata"),
+        default=dict,
+        blank=True,
+        null=True,
+        encoder=DjangoJSONEncoder,
+    )
 
     class Meta:
         verbose_name = _("project phase")
